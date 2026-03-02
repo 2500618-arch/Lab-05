@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Array</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #eef6f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .card {
+        background-color: #c7dfdf;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        width: 350px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .student {
+        padding: 8px 0;
+        border-bottom: 1px solid #aaa;
+    }
+    .result {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #222;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Student Marks</h2>
+    <div id="students"></div>
+    <div class="result" id="average"></div>
+    <div class="result" id="topper"></div>
+</div>
+
+<script>
+    
+    let students = [
+        { name: "Ahmad", marks: 97 },
+        { name: "Ayesha", marks: 82 },
+        { name: "Ali", marks: 78 }
+    ];
+
+    
+    let studentsDiv = document.getElementById("students");
+    students.forEach((student, index) => {
+        let div = document.createElement("div");
+        div.className = "student";
+        div.innerHTML = `Student ${index + 1}: ${student.name} = ${student.marks} marks`;
+        studentsDiv.appendChild(div);
+    });
+
+    
+    let total = 0;
+    students.forEach(student => {
+        total += student.marks;
+    });
+    let avg = (total / students.length).toFixed(2);
+    document.getElementById("average").innerHTML = `Average Marks = ${avg}`;
+
+    
+    let topper = students[0];
+    students.forEach(student => {
+        if(student.marks > topper.marks){
+            topper = student;
+        }
+    });
+    document.getElementById("topper").innerHTML = `Topper = ${topper.name} (${topper.marks} marks)`;
+
+</script>
+
+</body>
+</html>
